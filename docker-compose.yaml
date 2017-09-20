@@ -2,6 +2,7 @@ version: "3.3"
 
 services:
   simul:
+    build: .
     image: test
     volumes:
       - type: volume
