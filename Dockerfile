@@ -3,9 +3,9 @@ FROM ubuntu:16.04
 RUN apt-get update && apt-get install -y python2.7 python-numpy python-scipy
 RUN mkdir /calc
 
-COPY *.py /calc/
+COPY [ "*.py", "/calc/" ]
+COPY startscript.sh .
 
-ENTRYPOINT [ "cd", "/calc", "&&", "python" ]
+VOLUME [ "/calc/out/" ]
 
-CMD [ "CM dynamics.py" ]
-
+ENTRYPOINT [ "./startscript.sh" ]

@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+  simul:
+    image: test
+    volumes:
+      - type: volume
+        source: ./out
+        target: /calc/out

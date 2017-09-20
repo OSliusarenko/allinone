@@ -189,13 +189,13 @@ def calcC(procNum):
 np.seterr(over='raise', invalid='raise')
 
 N = int(1e3)
-stat = int(9e4)
+stat = int(8e1)
 c = 0.75
 
 dt = 1e-3; tmax = 1e-1
 ns = map(round, np.logspace(-2, np.log10(tmax), 5)/dt)
 
-processors = 30   #multiprocessing.cpu_count()
+processors = 4   #multiprocessing.cpu_count()
 stat /= processors
 print('Using {:} processors'.format(processors))
 
@@ -252,7 +252,7 @@ for key in pdfs:
 print('{:} errors'.format(errs))
 
 
-with open('pdfsC.pkl', 'wb') as ff:
+with open('out/pdfsC.pkl', 'wb') as ff:
     pickle.dump(pdfs, ff)
 
 
