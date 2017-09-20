@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM debian:stable-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python2.7 python-numpy python-scipy && \
