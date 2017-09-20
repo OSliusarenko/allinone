@@ -1,6 +1,8 @@
-FROM python:2.7
+FROM ubuntu:16.04
 
-RUN pip install scipy numpy
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python2.7 python-numpy python-scipy && \
+    apt-get clean && rm -r /var/cache/apt/archives/*
 RUN mkdir /calc
 
 COPY [ "*.py", "/calc/" ]
