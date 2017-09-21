@@ -1,10 +1,39 @@
 version: "3.3"
 
 services:
+  db:
+    image: influxdb
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - db-data:/var/lib/influxdb/data
+      - db-meta:/var/lib/influxdb/meta
+      - db-wal:/var/lib/influxdb/wal
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - db
+    container_name: grafana
+    environment:
+      GF_SERVER_ROOT_URL: http://grafana.server.name
+      GF_SECURITY_ADMIN_PASSWORD: secret
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
   simul:
     build: .
     image: test
+    depends_on:
+      - db
     volumes:
       - type: volume
         source: ./out
         target: /calc/out
+
+volumes:
+  db-data:
+  db-meta:
+  db-wal:
+  grafana-storage:
